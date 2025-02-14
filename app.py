@@ -2,7 +2,10 @@ import streamlit as st
 import pandas as pd
 import openpyxl
 
-# Datei-Pfad zur Excel-Datei (Passe diesen ggf. an)
+# WICHTIG: Muss GANZ OBEN stehen
+st.set_page_config(page_title="Jazzclub Booking Tool", layout="wide")
+
+# Datei-Pfad zur Excel-Datei (Streamlit benötigt oft einen relativen Pfad)
 EXCEL_FILE = "Jazzclub_Booking_Tool_Optimized.xlsx"
 
 # Lade die Excel-Datei
@@ -18,9 +21,6 @@ def save_to_excel(data):
 
 # Lade alle Tabellen aus der Excel-Datei
 data = load_excel()
-
-# Setze das App-Layout
-st.set_page_config(page_title="Jazzclub Booking Tool", layout="wide")
 
 # Titel
 st.title("🎷 Jazzclub Booking Tool")
@@ -96,21 +96,4 @@ elif choice == "➕ Neue Buchung":
             "Wochentag": datum.strftime("%A"),
             "Band/Künstler": band,
             "Genre": genre,
-            "Status": status,
-            "Gage": f"{gage} €",
-            "Ticketpreis": f"{ticketpreis} €",
-            "Erwartete Besucher": erwartete_besucher,
-            "Ansprechpartner Band": "",
-            "Vertrag vorhanden?": vertrag
-        }
-        
-        # Füge die neue Buchung hinzu
-        df_booking = data["Booking-Kalender"]
-        df_booking = df_booking.append(new_entry, ignore_index=True)
-        data["Booking-Kalender"] = df_booking
-        
-        # Speichere die Daten
-        save_to_excel(data)
-        
-        st.success(f"✅ Buchung für {band} wurde hinzugefügt!")
-
+            "Status
